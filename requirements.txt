@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pymupdf
+python-jose[cryptography]
+passlib[bcrypt]
+aiosqlite
+python-pptx
+youtube-transcript-api
+google-generativeai
+httpx
+python-multipart
+reportlab
+python-dotenv
