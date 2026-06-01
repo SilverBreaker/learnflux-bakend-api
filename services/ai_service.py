@@ -1,20 +1,16 @@
 import json
 import time
+import google.generativeai as genai
 from config import GEMINI_API_KEY
-from google import genai
-client = genai.Client(api_key=GEMINI_API_KEY)
 
-
+genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
 def _ask(prompt: str) -> str:
     for attempt in range(3):
         try:
-           response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt
-    )
-           return response.text.strip()
+            response = model.generate_content(prompt)
+            return response.text.strip()
         except Exception as e:
             if "429" in str(e) and attempt < 2:
                 print(f"Rate limited, waiting 10s (attempt {attempt+2}/3)...")
