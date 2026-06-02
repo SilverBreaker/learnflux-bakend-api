@@ -35,15 +35,15 @@ async def run_pipeline(doc_id: str, file_path: str):
             print("🤖 Running AI generation (single call)...")
             result = generate_all(text)
 
-            summary_data  = result.get("summary", {})
-            quiz          = result.get("quiz", [])
-            questions     = result.get("imp_questions", [])
-            mindmap       = result.get("mindmap", {"nodes": [], "edges": []})
+            summary_data = result.get("summary", {})
+            quiz         = result.get("quiz", [])
+            questions    = result.get("imp_questions", [])
+            mindmap      = result.get("mindmap", {"nodes": [], "edges": []})
 
-            print(f"   ✅ Summary: {len(summary_data.get('overview',''))} chars")
+            print(f"   ✅ Summary: {len(summary_data.get('overview', ''))} chars")
             print(f"   ✅ Quiz: {len(quiz)} questions")
             print(f"   ✅ Imp questions: {len(questions)}")
-            print(f"   ✅ Mindmap: {len(mindmap.get('nodes',[]))} nodes")
+            print(f"   ✅ Mindmap: {len(mindmap.get('nodes', []))} nodes")
 
             # Step 4: Generate video (optional)
             print("🎬 Generating video...")
