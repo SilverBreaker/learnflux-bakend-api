@@ -103,6 +103,7 @@ def _fetch_transcript(video_id: str) -> str:
         params={"videoId": video_id, "text": "true"},
         headers={"x-api-key": api_key}
     )
+    print(f"Supadata status: {res.status_code}, body: {res.text}")
     if res.status_code != 200:
         raise HTTPException(status_code=400, detail="Could not fetch transcript. Video may have no captions.")
     
