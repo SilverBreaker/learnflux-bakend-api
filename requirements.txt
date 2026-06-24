@@ -12,3 +12,4 @@ httpx
 python-multipart
 reportlab
 python-dotenv
+yt-dlp
