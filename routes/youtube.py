@@ -93,20 +93,21 @@ def _fetch_via_ytdlp(video_id: str) -> str | None:
 
 
 def _fetch_transcript(video_id: str) -> str:
-    # Try youtube-transcript-api first
-    result = _fetch_via_youtube_transcript_api(video_id)
-    if result:
-        return result
-
-    # Fallback to yt-dlp
-    result = _fetch_via_ytdlp(video_id)
-    if result:
-        return result
-
-    raise HTTPException(
-        status_code=400,
-        detail="Could not fetch transcript. The video may have no captions, or is restricted."
+    import requests
+    api_key = os.environ.get("sd_4025a12f5ab7bff0745926d5f6aa0e65")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="Transcript API not configured")
+    
+    res = requests.get(
+        "https://api.supadata.ai/v1/youtube/transcript",
+        params={"videoId": video_id, "text": "true"},
+        headers={"x-api-key": api_key}
     )
+    if res.status_code != 200:
+        raise HTTPException(status_code=400, detail="Could not fetch transcript. Video may have no captions.")
+    
+    data = res.json()
+    return data.get("content", "")
 
 
 # POST /youtube/convert

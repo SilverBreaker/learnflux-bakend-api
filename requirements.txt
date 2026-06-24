@@ -6,10 +6,9 @@ passlib[bcrypt]
 bcrypt==4.0.1
 aiosqlite
 python-pptx
-youtube-transcript-api
+
 google-genai
 httpx
 python-multipart
 reportlab
 python-dotenv
-yt-dlp
