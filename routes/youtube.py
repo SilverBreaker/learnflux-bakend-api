@@ -94,7 +94,7 @@ def _fetch_via_ytdlp(video_id: str) -> str | None:
 
 def _fetch_transcript(video_id: str) -> str:
     import requests
-    api_key = os.environ.get("sd_4025a12f5ab7bff0745926d5f6aa0e65")
+    api_key = os.environ.get("SUPADATA_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="Transcript API not configured")
     
